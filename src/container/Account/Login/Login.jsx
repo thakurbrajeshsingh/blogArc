@@ -50,18 +50,25 @@ const Text = styled(Typography)`
   font-size: 16px;
 `;
 
+const signupInitialValues = {
+  name: "",
+  username: "",
+  password: "",
+};
+
 const Login = () => {
   const imageURL =
     "https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
 
   const [account, toggleAccount] = useState("login");
+  const [signup, setSignup] = useState(signupInitialValues);
 
   const toggleSignup = () => {
     account === "signup" ? toggleAccount("login") : toggleAccount("signup");
   };
 
-  const handleChange = () => {
-    console.log("Hello");
+  const onInputChange = (e) => {
+    setSignup({ ...signup, [e.target.name]: e.target.value });
   };
 
   return (
@@ -71,16 +78,8 @@ const Login = () => {
 
         {account === "login" ? (
           <Wrapper>
-            <TextField
-              label="E-mail"
-              onChange={handleChange}
-              variant="standard"
-            />
-            <TextField
-              label="Password"
-              onChange={handleChange}
-              variant="standard"
-            />
+            <TextField label="E-mail" variant="standard" />
+            <TextField label="Password" variant="standard" />
             <LoginButton variant="contained">Login</LoginButton>
             <Text style={{ textAlign: "center" }}>OR</Text>
             <SignupButton variant="text" onClick={() => toggleSignup()}>
@@ -90,19 +89,22 @@ const Login = () => {
         ) : (
           <Wrapper>
             <TextField
-              label="Enter E-mail"
-              onChange={handleChange}
+              label="Enter Name"
               variant="standard"
+              name="name"
+              onChange={(e) => onInputChange(e)}
             />
             <TextField
               label="Enter Username"
-              onChange={handleChange}
               variant="standard"
+              name="username"
+              onChange={(e) => onInputChange(e)}
             />
             <TextField
               label="Enter Password"
-              onChange={handleChange}
               variant="standard"
+              name="password"
+              onChange={(e) => onInputChange(e)}
             />
             <SignupButton>Signup</SignupButton>
             <Text style={{ textAlign: "center" }}>OR</Text>
