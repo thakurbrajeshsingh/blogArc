@@ -1,7 +1,13 @@
 import React from "react";
 // Material UI Components
 import { Box, Typography, TextField, Button, styled } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+// navigation
+import { useNavigate } from "react-router-dom";
+
+// context for sharing
+import { DataContext } from "../../../context/DataProvider";
 
 // API
 import { API } from "../../../service/api";
@@ -84,6 +90,9 @@ const Login = () => {
   const [login, setLogin] = useState(loginInitialValues);
   const [error, setError] = useState("");
 
+  const { setAccount } = useContext(DataContext);
+  const navigate = useNavigate();
+
   const toggleSignup = () => {
     account === "signup" ? toggleAccount("login") : toggleAccount("signup");
   };
@@ -119,9 +128,11 @@ const Login = () => {
         `refreshToken`,
         `Bearer ${response.data.refreshToken}`
       );
-
-
-
+      setAccount({
+        username: response.data.username,
+        name: response.data.name,
+      });
+      navigate("/");
     } else {
       setError("Something went wrong!Try Again");
     }
