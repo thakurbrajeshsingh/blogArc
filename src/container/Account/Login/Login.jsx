@@ -68,13 +68,22 @@ const signupInitialValues = {
   password: "",
 };
 
+const loginInitialValues = {
+  username: "",
+  password: "",
+};
+
 const Login = () => {
+  // lOGO URL
   const imageURL =
     "https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
 
+  // STATE
   const [account, toggleAccount] = useState("login");
   const [signup, setSignup] = useState(signupInitialValues);
+  const [login, setLogin] = useState(loginInitialValues);
   const [error, setError] = useState("");
+
   const toggleSignup = () => {
     account === "signup" ? toggleAccount("login") : toggleAccount("signup");
   };
@@ -82,7 +91,6 @@ const Login = () => {
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
   };
-
   const signupUser = async () => {
     let response = await API.userSignup(signup);
     if (response.isSuccess) {
@@ -93,6 +101,32 @@ const Login = () => {
     }
   };
 
+  const onValueChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const loginUser = async () => {
+    let response = await API.userLogin(login);
+    if (response.isSuccess) {
+      setError("");
+
+      sessionStorage.setItem(
+        `accessToken`,
+        `Bearer ${response.data.accessToken}`
+      );
+
+      sessionStorage.setItem(
+        `refreshToken`,
+        `Bearer ${response.data.refreshToken}`
+      );
+
+
+
+    } else {
+      setError("Something went wrong!Try Again");
+    }
+  };
+
   return (
     <Component>
       <Box>
@@ -100,10 +134,24 @@ const Login = () => {
 
         {account === "login" ? (
           <Wrapper>
-            <TextField label="E-mail" variant="standard" />
-            <TextField label="Password" variant="standard" />
+            <TextField
+              label="Enter Username"
+              variant="standard"
+              name="username"
+              value={login.username}
+              onChange={(e) => onValueChange(e)}
+            />
+            <TextField
+              label="Enter Password"
+              variant="standard"
+              name="password"
+              value={login.password}
+              onChange={(e) => onValueChange(e)}
+            />
             {error && <Error>{error}</Error>}
-            <LoginButton variant="contained">Login</LoginButton>
+            <LoginButton variant="contained" onClick={() => loginUser()}>
+              Login
+            </LoginButton>
             <Text style={{ textAlign: "center" }}>OR</Text>
             <SignupButton variant="text" onClick={() => toggleSignup()}>
               CREATE AN ACCOUNT
