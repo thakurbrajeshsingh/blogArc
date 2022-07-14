@@ -1,7 +1,7 @@
 import React from "react";
 
 import { categories } from "../../constants/data";
-
+import { Link, useSearchParams } from "react-router-dom";
 import {
   Button,
   Table,
@@ -23,21 +23,35 @@ const StyledButton = styled(Button)`
   color: #fff;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Categories = () => {
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category");
   return (
     <>
-      <StyledButton variant="contained">Create A Blog</StyledButton>
-
+      <StyledLink to={`/create?category=${category || ""}`}>
+        <StyledButton variant="contained">Create Blog</StyledButton>
+      </StyledLink>
       <StyledTable>
         <TableHead>
           <TableRow>
-            <TableCell>All Categories</TableCell>
+            <TableCell>
+              <StyledLink to="/">All Categories</StyledLink>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {categories.map((category) => (
             <TableRow key={category.id}>
-              <TableCell>{category.type}</TableCell>
+              <TableCell>
+                <StyledLink to={`/?category=${category.type}`}>
+                  {category.type}
+                </StyledLink>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
