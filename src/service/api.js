@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { AP_NOTIFICATION_MESSAGE, SERVICE_URL } from '../constants/config.js';
-
+import { getAccessToken } from '../utils/common-utils.js';
 
 const API_URL = 'http://localhost:8000'
 
@@ -87,6 +87,9 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             url: value.url,
             data: body,
             responseType: value.responseType,
+            headers: {
+                authorization: getAccessToken()
+            },
             onUploadProgress: function (progressEvent) {
                 if (showUploadProgress) {
                     let percentageCompleted = Math.round((progressEvent.loaded * 100) / ProgressEvent.total)
