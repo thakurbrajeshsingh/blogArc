@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 
 // component
-import { Banner, Categories } from "../../components";
+import { Banner, Categories, Posts } from "../../components";
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
           <Categories />
         </Grid>
         <Grid container item xs={12} sm={10} lg={10}>
-          Post
+          <Posts />
         </Grid>
       </Grid>
     </>
