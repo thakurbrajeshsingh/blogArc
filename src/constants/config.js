@@ -49,5 +49,10 @@ export const SERVICE_URL = {
         url: '/posts',
         method: 'GET',
         params: true
+    },
+    getPostById: {
+        url: '/post',
+        method: 'GET',
+        query: true
     }
 }

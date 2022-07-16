@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { API } from "../../../service/api";
 
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
 
 import { Post } from "../../../components";
@@ -27,7 +27,12 @@ const Posts = () => {
       {posts && posts.length > 0 ? (
         posts.map((post) => (
           <Grid item lg={3} sm={4} xs={12}>
-            <Post post={post} />
+            <Link
+              to={`/details/${post._id}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Post post={post} />
+            </Link>
           </Grid>
         ))
       ) : (
