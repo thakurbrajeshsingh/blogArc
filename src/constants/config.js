@@ -42,10 +42,12 @@ export const SERVICE_URL = {
     },
     createPost: {
         url: '/create',
-        method: 'POST'
+        method: 'POST',
+
     },
     getAllPosts: {
         url: '/posts',
-        method: 'GET'
+        method: 'GET',
+        params: true
     }
 }
