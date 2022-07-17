@@ -3,3 +3,4 @@ export { default as Home } from './Home'
 
 export { default as CreatePost } from './Create/CreatePost'
 export { default as DetailedPost } from './Posts/DetailedPost'
+export { default as UpdatePost } from './Create/UpdatePost'

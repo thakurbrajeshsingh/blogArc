@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Box, Typography, styled } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { API } from "../../../service/api";
 import { DataContext } from "../../../context/DataProvider";
 
@@ -69,9 +69,11 @@ const DetailedPost = () => {
     <Container>
       <Image src={imgURL} alt="blog" />
       <Box style={{ float: "right" }}>
-        {account.username === "post.username" && (
+        {account.username === post.username && (
           <>
-            <EditIcon color="primary" />
+            <Link to={`/update/${post._id}`}>
+              <EditIcon color="primary" />
+            </Link>
             <DeleteIcon color="error" />
           </>
         )}

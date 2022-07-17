@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
 
-export const PostsWrapper = styled.View`
+export const UpdatePostWrapper = styled.View`
  flex: 1
 `;

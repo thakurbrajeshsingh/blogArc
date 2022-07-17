@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom
 
 
 
-import { Login, Home, CreatePost, DetailedPost } from './container'
+import { Login, Home, CreatePost, DetailedPost ,UpdatePost} from './container'
 // components
 import { Header } from './components'
 import DataProvider from './context/DataProvider';
@@ -38,6 +38,10 @@ function App() {
 
             <Route path='/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
               <Route path='/details/:id' element={<DetailedPost />} />
+            </Route>
+
+            <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path='/update/:id' element={<UpdatePost />} />
             </Route>
 
           </Routes>

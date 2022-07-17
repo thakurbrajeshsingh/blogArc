@@ -54,5 +54,11 @@ export const SERVICE_URL = {
         url: '/post',
         method: 'GET',
         query: true
+    },
+    updatePost: {
+        url: '/update',
+        method: 'PUT',
+        query: true
     }
+
 }
