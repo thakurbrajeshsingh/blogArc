@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Box, Typography, styled } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { API } from "../../../service/api";
 import { DataContext } from "../../../context/DataProvider";
 
@@ -52,6 +52,8 @@ const DetailedPost = () => {
 
   const { id } = useParams();
   const { account } = useContext(DataContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       let response = await API.getPostById(id);
@@ -61,6 +63,13 @@ const DetailedPost = () => {
     };
     fetchData();
   }, []);
+
+  const deletePost = async () => {
+    let response = await API.deletePost(post._id);
+    if (response.isSuccess) {
+      navigate("/");
+    }
+  };
 
   const imgURL = post.picture
     ? post.picture
@@ -74,7 +83,11 @@ const DetailedPost = () => {
             <Link to={`/update/${post._id}`}>
               <EditIcon color="primary" />
             </Link>
-            <DeleteIcon color="error" />
+            <DeleteIcon
+              color="error"
+              onClick={() => deletePost()}
+              style={{ cursor: "pointer" }}
+            />
           </>
         )}
       </Box>

@@ -59,6 +59,11 @@ export const SERVICE_URL = {
         url: '/update',
         method: 'PUT',
         query: true
+    },
+    deletePost:{
+        url: 'delete',
+        method: 'DELETE',
+        query: true  
     }
 
 }
