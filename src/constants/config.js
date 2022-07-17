@@ -60,15 +60,20 @@ export const SERVICE_URL = {
         method: 'PUT',
         query: true
     },
-    deletePost:{
+    deletePost: {
         url: 'delete',
         method: 'DELETE',
-        query: true  
+        query: true
     },
-    newComment:{
+    newComment:
+    {
         url: '/comment/new',
-        method: 'POST',
-        query: true  
+        method: 'POST'
+    },
+    getAllComments: {
+        url: 'comments',
+        method: 'GET',
+        query: true
     }
 
 }

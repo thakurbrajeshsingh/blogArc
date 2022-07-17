@@ -1,8 +1,11 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Box, TextareaAutosize, Button, styled } from "@mui/material";
 
 import { DataContext } from "../../../context/DataProvider";
 import { API } from "../../../service/api";
+
+import { Comment } from "../../../components";
+
 const Container = styled(Box)`
   margin-top: 100px;
   display: flex;
@@ -31,7 +34,18 @@ const PostComments = ({ post }) => {
   const url = "https://static.thenounproject.com/png/12017-200.png";
 
   const [comment, setComment] = useState(IniatialValues);
+  const [comments, setComments] = useState([]);
   const { account } = useContext(DataContext);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await API.getAllComments(post._id);
+      if (response.isSuccess) {
+        setComments(response.data);
+      }
+    };
+    getData();
+  }, [post]);
 
   const handleChange = (e) => {
     setComment({
@@ -42,7 +56,7 @@ const PostComments = ({ post }) => {
     });
   };
 
-  const addComment = async (e) => {
+  const addComment = async () => {
     let response = await API.newComment(comment);
     if (response.isSuccess) {
       setComment(IniatialValues);
@@ -69,7 +83,11 @@ const PostComments = ({ post }) => {
           Comment
         </Button>
       </Container>
-      <Box></Box>
+      <Box>
+        {comments &&
+          comments.length > 0 &&
+          comments.map(comment => (<Comment comment={comment} />))}
+      </Box>
     </Box>
   );
 };
