@@ -64,6 +64,11 @@ export const SERVICE_URL = {
         url: 'delete',
         method: 'DELETE',
         query: true  
+    },
+    newComment:{
+        url: '/comment/new',
+        method: 'POST',
+        query: true  
     }
 
 }

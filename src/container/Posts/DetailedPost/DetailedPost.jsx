@@ -6,12 +6,12 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { API } from "../../../service/api";
 import { DataContext } from "../../../context/DataProvider";
 
+import { PostComments } from "../../../components";
+
 const Container = styled(Box)(({ theme }) => ({
-  margin: '50px 100px',
-  [theme.breakpoints.down('md')]: {
-      margin: 0,
-      
-      
+  margin: "50px 100px",
+  [theme.breakpoints.down("md")]: {
+    margin: 0,
   },
 }));
 
@@ -110,6 +110,7 @@ const DetailedPost = () => {
         </Typography>
       </Author>
       <Description>{post.description}</Description>
+      <PostComments post={post}/>
     </Container>
   );
 };
