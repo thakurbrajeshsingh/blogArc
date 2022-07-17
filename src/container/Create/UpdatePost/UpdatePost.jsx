@@ -13,12 +13,14 @@ import {
   InputBase,
   Button,
   TextareaAutosize,
-  
 } from "@mui/material";
 
-const Container = styled(Box)`
-  margin: 50px 100px;
-`;
+const Container = styled(Box)(({ theme }) => ({
+  margin: "50px 100px",
+  [theme.breakpoints.down("md")]: {
+    margin: 0,
+  },
+}));
 
 const Image = styled("img")({
   width: "100%",

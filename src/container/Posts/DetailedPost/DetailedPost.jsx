@@ -6,9 +6,14 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { API } from "../../../service/api";
 import { DataContext } from "../../../context/DataProvider";
 
-const Container = styled(Box)`
-  margin: 50px 100px;
-`;
+const Container = styled(Box)(({ theme }) => ({
+  margin: '50px 100px',
+  [theme.breakpoints.down('md')]: {
+      margin: 0,
+      
+      
+  },
+}));
 
 const Image = styled("img")({
   width: "100%",
