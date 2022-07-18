@@ -20,10 +20,11 @@ const Component = styled(Box)`
 `;
 
 const Image = styled("img")({
-  width: 100,
+  maxWidth: 200,
   margin: "auto",
   display: "flex",
   padding: "50px 0 0",
+  borderRadius: "20px 0",
 });
 
 const Wrapper = styled(Box)`
@@ -81,8 +82,7 @@ const loginInitialValues = {
 
 const Login = ({ isUserAuthenticated }) => {
   // lOGO URL
-  const imageURL =
-    "https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
+  const imageURL = "https://i.ibb.co/cJF9QnZ/Logo-3.webp";
 
   // STATE
   const [account, toggleAccount] = useState("login");

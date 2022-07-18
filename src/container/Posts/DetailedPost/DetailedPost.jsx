@@ -78,7 +78,7 @@ const DetailedPost = () => {
 
   const imgURL = post.picture
     ? post.picture
-    : "https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80";
+    : "https://i.ibb.co/j4yd8Kn/post-Banner.jpg";
   return (
     <Container>
       <Image src={imgURL} alt="blog" />
@@ -110,7 +110,7 @@ const DetailedPost = () => {
         </Typography>
       </Author>
       <Description>{post.description}</Description>
-      <PostComments post={post}/>
+      <PostComments post={post} />
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { Box, Typography, styled } from "@mui/material";
 
 const Image = styled(Box)`
-  background: url(https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg)
+  background: url(https://i.ibb.co/WFLxTDv/blog-Arc-Banner.webp)
     center/55% repeat-x #000;
   width: 100%;
   height: 50vh;
@@ -26,8 +26,8 @@ const SubHeading = styled(Typography)`
 const Banner = () => {
   return (
     <Image>
-      <Heading>Blog</Heading>
-      <SubHeading>Brajesh singh</SubHeading>
+      <Heading>BlogArc</Heading>
+      <SubHeading>create your Space</SubHeading>
     </Image>
   );
 };
