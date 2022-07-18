@@ -74,6 +74,11 @@ export const SERVICE_URL = {
         url: 'comments',
         method: 'GET',
         query: true
-    }
+    },
+    deleteComment: {
+        url: 'comment/delete',
+        method: 'DELETE',
+        query: true
+    },
 
 }

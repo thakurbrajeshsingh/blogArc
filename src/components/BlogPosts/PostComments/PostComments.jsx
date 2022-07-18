@@ -35,6 +35,8 @@ const PostComments = ({ post }) => {
 
   const [comment, setComment] = useState(IniatialValues);
   const [comments, setComments] = useState([]);
+  const [toggle, setToggle] = useState(false);
+
   const { account } = useContext(DataContext);
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const PostComments = ({ post }) => {
       }
     };
     getData();
-  }, [post]);
+  }, [post, toggle]);
 
   const handleChange = (e) => {
     setComment({
@@ -61,6 +63,7 @@ const PostComments = ({ post }) => {
     if (response.isSuccess) {
       setComment(IniatialValues);
     }
+    setToggle(prevState => !prevState);
   };
 
   return (
@@ -86,7 +89,9 @@ const PostComments = ({ post }) => {
       <Box>
         {comments &&
           comments.length > 0 &&
-          comments.map(comment => (<Comment comment={comment} />))}
+          comments.map((comment) => (
+            <Comment comment={comment} setToggle={setToggle} />
+          ))}
       </Box>
     </Box>
   );

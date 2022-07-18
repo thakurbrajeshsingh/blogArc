@@ -1,17 +1,59 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { useContext } from "react";
+import { Box, Typography, styled } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
-const Comment = ({ comment }) => {
+import { DataContext } from "../../../context/DataProvider";
+import { API } from "../../../service/api";
+const Component = styled(Box)`
+  margin-top: 30px;
+  background-color: #f5f5f5;
+  padding: 10px;
+`;
+
+const Container = styled(Box)`
+  display: flex;
+  margin-bottom: 5px;
+`;
+
+const Name = styled(Typography)`
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 20px;
+`;
+
+const StyledDate = styled(Typography)`
+  color: #878787;
+  font-size: 14px;
+`;
+
+const DeleteIcon = styled(Delete)`
+  margin-left: auto;
+`;
+
+const Comment = ({ comment, setToggle }) => {
+  const { account } = useContext(DataContext);
+
+  const removeComment = async () => {
+    let reponse = await API.deleteComment(comment._id);
+    if (reponse.isSuccess) {
+      setToggle((prevState) => !prevState);
+    }
+  };
+
   return (
-    <Box>
-      <Box>
-        <Typography>{comment.name}</Typography>
-        <Typography>{new Date(comment.date).toDateString()}</Typography>
-      </Box>
+    <Component>
+      <Container>
+        <Name>{comment.name}</Name>
+        <StyledDate>{new Date(comment.date).toDateString()}</StyledDate>
+        {comment.name === account.username && (
+          <DeleteIcon onClick={() => removeComment()} />
+        )}
+      </Container>
       <Box>
         <Typography>{comment.comments}</Typography>
       </Box>
-    </Box>
+    </Component>
   );
 };
 
